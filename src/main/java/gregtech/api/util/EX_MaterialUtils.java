@@ -2,6 +2,8 @@ package gregtech.api.util;
 
 import java.util.ArrayList;
 
+import net.minecraft.client.Minecraft;
+
 public class EX_MaterialUtils {
 	
 	private static boolean freeMaterialDump = false;
@@ -32,7 +34,7 @@ public class EX_MaterialUtils {
 		
 		findFreeIDS(arraySortUp(convert(arr)));
 		
-		//System.exit(1);
+		Minecraft.getMinecraft().shutdown();
 	}
 	
 	private static int[ ] arraySortUp( int[ ] intArray )
