@@ -17,7 +17,7 @@ import net.minecraftforge.fluids.FluidStack;
  */
 public class GT_FluidStack extends FluidStack {
     private static final Collection<GT_FluidStack> sAllFluidStacks = new ArrayList<GT_FluidStack>(5000);
-    private static boolean lock = false;
+    private static volatile boolean lock = false;
     private Fluid mFluid;
 
     public GT_FluidStack(Fluid aFluid, int aAmount) {
@@ -30,7 +30,7 @@ public class GT_FluidStack extends FluidStack {
         this(aFluid.getFluid(), aFluid.amount);
     }
 
-    public static void fixAllThoseFuckingFluidIDs() {
+    public static synchronized void fixAllThoseFuckingFluidIDs() {
         if (ForgeVersion.getBuildVersion() < 1355) {
             while (lock) {
                 try {
