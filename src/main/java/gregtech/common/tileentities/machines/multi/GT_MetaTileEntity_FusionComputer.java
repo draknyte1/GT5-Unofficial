@@ -358,7 +358,10 @@ public abstract class GT_MetaTileEntity_FusionComputer extends GT_MetaTileEntity
                                 mMaxProgresstime = 0;
                                 mEfficiencyIncrease = 0;
                                 if (mOutputFluids != null && mOutputFluids.length > 0) {
-                                    GT_Mod.instance.achievements.issueAchivementHatchFluid(aBaseMetaTileEntity.getWorld().getPlayerEntityByName(aBaseMetaTileEntity.getOwnerName()), mOutputFluids[0]);
+                                    try {
+                                        GT_Mod.instance.achievements.issueAchivementHatchFluid(aBaseMetaTileEntity.getWorld().getPlayerEntityByName(aBaseMetaTileEntity.getOwnerName()), mOutputFluids[0]);
+                                    } catch (Exception e) {
+                                    }
                                 }
                                 this.mEUStore = (int) aBaseMetaTileEntity.getStoredEU();
                                 if (aBaseMetaTileEntity.isAllowedToWork())
@@ -369,7 +372,11 @@ public abstract class GT_MetaTileEntity_FusionComputer extends GT_MetaTileEntity
                                 turnCasingActive(mMaxProgresstime > 0);
                                 if (aBaseMetaTileEntity.isAllowedToWork()) {
                                     this.mEUStore = (int) aBaseMetaTileEntity.getStoredEU();
-                                    if (checkRecipe(mInventory[1]) && aBaseMetaTileEntity.getStoredEU() >= this.mLastRecipe.mSpecialValue) {
+                                    if (checkRecipe(mInventory[1])) {
+                                        if (this.mEUStore < this.mLastRecipe.mSpecialValue) {
+                                            mMaxProgresstime = 0;
+                                            turnCasingActive(false);
+                                        }
                                         aBaseMetaTileEntity.decreaseStoredEnergyUnits(this.mLastRecipe.mSpecialValue, true);
                                     }
                                 }
