@@ -465,7 +465,7 @@ public abstract class GT_MetaGenerated_Tool extends GT_MetaBase_Item implements 
 		if(player.getCurrentEquippedItem()==null)return false;
 		if (!isItemStackUsable(player.getCurrentEquippedItem())) return false;
 		IToolStats tStats = getToolStats(player.getCurrentEquippedItem());
-		return tStats != null && tStats.isCrowbar();
+		return tStats != null && tStats.isWrench();
 	}
 
 	@Override

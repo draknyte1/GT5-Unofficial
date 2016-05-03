@@ -36,7 +36,7 @@ public class GT_MetaTileEntity_LargeTurbine_Gas extends GT_MetaTileEntity_LargeT
     public String[] getDescription() {
         return new String[]{
                 "Controller Block for the Large Gas Turbine",
-                "Size: 3x3x4 (Hollow)", "Controller (front centered)",
+                "Size: 3x4x3 (Hollow)", "Controller (front centered)",
                 "1x Input Hatch (side centered)",
                 "1x Dynamo Hatch (back centered)",
                 "1x Maintenance Hatch (side centered)",
@@ -109,6 +109,7 @@ public class GT_MetaTileEntity_LargeTurbine_Gas extends GT_MetaTileEntity_LargeT
 
             if (totalFlow != actualOptimalFlow) {
                 float efficiency = 1.0f - Math.abs(((totalFlow - (float) actualOptimalFlow) / actualOptimalFlow));
+                if(totalFlow>aOptFlow){efficiency = 1.0f;}
                 if (efficiency < 0)
                     efficiency = 0; // Can happen with really ludicrously poor inefficiency.
                 tEU *= efficiency;
