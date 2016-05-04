@@ -17,12 +17,8 @@ import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.GT_DummyWorld;
-import ic2.api.recipe.IFluidHeatManager.BurnProperty;
-import ic2.api.recipe.Recipes;
 
 import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Map;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -1489,7 +1485,8 @@ implements Runnable {
 			}
 		}
 
-		try {
+		//Nope - Gotta refine
+		/*try {
 			Map<String, BurnProperty> tLiqExchange = ic2.api.recipe.Recipes.FluidHeatGenerator.getBurnProperties();
 			Iterator<Map.Entry<String, BurnProperty>> tIterator = tLiqExchange.entrySet().iterator();
 			while (tIterator.hasNext()) {
@@ -1499,7 +1496,7 @@ implements Runnable {
 					Recipes.FluidHeatGenerator.addFluid("ic2hotcoolant", 80, 80);
 				}
 			}
-		} catch (Throwable e) {/*Do nothing*/}
+		} catch (Throwable e) {Do nothing}
 
 		try {
 			Map<String, BurnProperty> tLiqExchange = ic2.api.recipe.Recipes.FluidHeatGenerator.getBurnProperties();
@@ -1511,7 +1508,7 @@ implements Runnable {
 					Recipes.FluidHeatGenerator.addFluid("ic2coolant", 80, 80);
 				}
 			}
-		} catch (Throwable e) {/*Do nothing*/}
+		} catch (Throwable e) {Do nothing}*/
 
 	}
 }
