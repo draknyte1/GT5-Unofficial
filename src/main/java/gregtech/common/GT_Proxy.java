@@ -1606,22 +1606,22 @@ public abstract class GT_Proxy implements IGT_Mod, IGuiHandler, IFuelHandler {
             rFuelValue = (short) Math.max(rFuelValue, 888);
         }
         if (GT_OreDictUnificator.isItemStackInstanceOf(aFuel, "gemLignite")) {
-            rFuelValue = (short) Math.max(rFuelValue, 300);
+            rFuelValue = (short) Math.max(rFuelValue, 1500);
         }
         if (GT_OreDictUnificator.isItemStackInstanceOf(aFuel, "crushedLignite")) {
-            rFuelValue = (short) Math.max(rFuelValue, 300);
+            rFuelValue = (short) Math.max(rFuelValue, 1500);
         }
         if (GT_OreDictUnificator.isItemStackInstanceOf(aFuel, "dustImpureLignite")) {
-            rFuelValue = (short) Math.max(rFuelValue, 300);
+            rFuelValue = (short) Math.max(rFuelValue, 1500);
         }
         if (GT_OreDictUnificator.isItemStackInstanceOf(aFuel, "dustLignite")) {
-            rFuelValue = (short) Math.max(rFuelValue, 300);
+            rFuelValue = (short) Math.max(rFuelValue, 1500);
         }
         if (GT_OreDictUnificator.isItemStackInstanceOf(aFuel, "dustSmallLignite")) {
-            rFuelValue = (short) Math.max(rFuelValue, 75);
+            rFuelValue = (short) Math.max(rFuelValue, 375);
         }
         if (GT_OreDictUnificator.isItemStackInstanceOf(aFuel, "dustTinyLignite")) {
-            rFuelValue = (short) Math.max(rFuelValue, 33);
+            rFuelValue = (short) Math.max(rFuelValue, 155);
         }
         if (GT_OreDictUnificator.isItemStackInstanceOf(aFuel, "gemCoal")) {
             rFuelValue = (short) Math.max(rFuelValue, 1600);
