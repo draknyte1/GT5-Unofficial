@@ -6,7 +6,6 @@ import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
-import gregtech.api.enums.SubTag;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Utility;
@@ -39,30 +38,24 @@ public class ProcessingBlock implements gregtech.api.interfaces.IOreRecipeRegist
         if (GregTech_API.sRecipeFile.get(ConfigCategories.Recipes.storageblockcrafting, OrePrefixes.block.get(aMaterial).toString(), false)) {
             if ((tStack1 == null) && (tStack2 == null) && (tStack3 != null))
                 GT_ModHandler.addCraftingRecipe(GT_OreDictUnificator.get(OrePrefixes.block, aMaterial, 1L), new Object[]{"XXX", "XXX", "XXX", Character.valueOf('X'), OrePrefixes.dust.get(aMaterial)});
-           /* if (tStack2 != null)
+            if (tStack2 != null)
                 GT_ModHandler.addCraftingRecipe(GT_OreDictUnificator.get(OrePrefixes.block, aMaterial, 1L), new Object[]{"XXX", "XXX", "XXX", Character.valueOf('X'), OrePrefixes.gem.get(aMaterial)});
-            */if (tStack1 != null) {
+            if (tStack1 != null) {
                 GT_ModHandler.addCraftingRecipe(GT_OreDictUnificator.get(OrePrefixes.block, aMaterial, 1L), new Object[]{"XXX", "XXX", "XXX", Character.valueOf('X'), OrePrefixes.ingot.get(aMaterial)});
             }
         }
         if (tStack1 != null) tStack1.stackSize = 9;
-        if (tStack2 != null) tStack2.stackSize = 6;
+        if (tStack2 != null) tStack2.stackSize = 9;
         if (tStack3 != null) {
             tStack3.stackSize = 9;
         }
-        if (aMaterial.contains(SubTag.CRYSTAL) && !aMaterial.contains(SubTag.METAL)){
-        	//tStack2.
-        	GT_Values.RA.addForgeHammerRecipe(aStack, tStack2, 100, 24);
-        }
-        else {
-        	GT_Values.RA.addForgeHammerRecipe(aStack, tStack2, 100, 24);
-        }
-        
+        GT_Values.RA.addForgeHammerRecipe(aStack, tStack2, 100, 24);
+
         if (GregTech_API.sRecipeFile.get(ConfigCategories.Recipes.storageblockdecrafting, OrePrefixes.block.get(aMaterial).toString(), tStack2 != null)) {
             if (tStack3 != null)
                 GT_ModHandler.addShapelessCraftingRecipe(tStack3, new Object[]{OrePrefixes.block.get(aMaterial)});
             if (tStack2 != null)
-                //GT_ModHandler.addShapelessCraftingRecipe(tStack2, new Object[]{OrePrefixes.block.get(aMaterial)});
+                GT_ModHandler.addShapelessCraftingRecipe(tStack2, new Object[]{OrePrefixes.block.get(aMaterial)});
             if (tStack1 != null) {
                 GT_ModHandler.addShapelessCraftingRecipe(tStack1, new Object[]{OrePrefixes.block.get(aMaterial)});
             }
