@@ -711,6 +711,11 @@ implements IGT_Mod {
 				GregTech_API.sAfterGTLoad = null;
 				GregTech_API.sBeforeGTPostload = null;
 				GregTech_API.sAfterGTPostload = null;
+				
+				//TODO
+				EX_MaterialUtils.createCraftingRegistryMap();
+				EX_MaterialUtils.lookupCraftingRegistryMap();
+				
 	}
 
 	@Mod.EventHandler

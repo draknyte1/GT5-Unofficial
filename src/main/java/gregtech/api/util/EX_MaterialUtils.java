@@ -1,8 +1,11 @@
 package gregtech.api.util;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.item.crafting.CraftingManager;
 
 public class EX_MaterialUtils {
 	
@@ -506,4 +509,18 @@ public class EX_MaterialUtils {
 
 
 	};
+	private static List craftingRegistry;
+	
+	public static void createCraftingRegistryMap(){
+		CraftingManager.getInstance().getRecipeList();
+	}
+	
+	public static void lookupCraftingRegistryMap(){
+		// iterate via "iterator loop"
+		System.out.println("\n==> Iterator Example...");
+		Iterator Iterator1 = craftingRegistry.iterator();
+		while (Iterator1.hasNext()) {
+		System.out.println(Iterator1.next());
+		}
+	}
 }
