@@ -3,16 +3,17 @@
 ### [MiscUtils (Addition Gregtech Goodness!)](https://github.com/draknyte1/MiscUtilities/wiki)
 ===
 
-## About
+# About
 
 This GT5 Repo contains a Modified version of GT5.08.33.  
 Fixes a few bugs, Rebalances Materials & adds more useful ones.  
-Keeping any new content to my own Mod, [MiscUtils (Click Here to check it out!)](https://github.com/draknyte1/MiscUtilities/wiki) so not as to ruin the integrity of GregTechs core system.  
-I plan to work with @Bogdan-g to optimise whatever is possible within the core classes, for the benefit of everyone.
+Keeping any new content to my own Mod, [MiscUtils (Click Here to check it out!)](https://github.com/draknyte1/MiscUtilities/wiki) so not as to ruin the integrity of GregTechs core system.
+I plan to work with Bogdan-g to optimise whatever is possible within the core classes, for the benefit of everyone.
 
 ## Downloads
 
-Builds can be found in the build/libs folder.
+Builds can be found in the build/libs folder.  
+Latest Recommended - https://github.com/draknyte1/GT5-Unofficial-Ex/blob/master/build/libs/gregtech-5.8.61.jar
 
 ## Installation
 
