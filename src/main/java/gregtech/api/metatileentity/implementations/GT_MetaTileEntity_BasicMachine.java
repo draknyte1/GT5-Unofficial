@@ -47,6 +47,7 @@ public abstract class GT_MetaTileEntity_BasicMachine extends GT_MetaTileEntity_B
     public int mMainFacing = -1, mProgresstime = 0, mMaxProgresstime = 0, mEUt = 0, mOutputBlocked = 0;
     public FluidStack mOutputFluid;
     public String mGUIName = "", mNEIName = "";
+    private NBTTagCompound mRecipeStuff = new NBTTagCompound();
     /**
      * Contains the Recipe which has been previously used, or null if there was no previous Recipe, which could have been buffered
      */
@@ -353,6 +354,7 @@ public abstract class GT_MetaTileEntity_BasicMachine extends GT_MetaTileEntity_B
         aNBT.setInteger("mMainFacing", mMainFacing);
         aNBT.setInteger("mProgresstime", mProgresstime);
         aNBT.setInteger("mMaxProgresstime", mMaxProgresstime);
+        aNBT.setTag("GT.CraftingComponents", mRecipeStuff);
         if (mOutputFluid != null) aNBT.setTag("mOutputFluid", mOutputFluid.writeToNBT(new NBTTagCompound()));
         if (mFluidOut != null) aNBT.setTag("mFluidOut", mFluidOut.writeToNBT(new NBTTagCompound()));
 
@@ -372,6 +374,7 @@ public abstract class GT_MetaTileEntity_BasicMachine extends GT_MetaTileEntity_B
         mMainFacing = aNBT.getInteger("mMainFacing");
         mProgresstime = aNBT.getInteger("mProgresstime");
         mMaxProgresstime = aNBT.getInteger("mMaxProgresstime");
+        mRecipeStuff = aNBT.getCompoundTag("GT.CraftingComponents");
         mOutputFluid = FluidStack.loadFluidStackFromNBT(aNBT.getCompoundTag("mOutputFluid"));
         mFluidOut = FluidStack.loadFluidStackFromNBT(aNBT.getCompoundTag("mFluidOut"));
 
@@ -659,6 +662,7 @@ public abstract class GT_MetaTileEntity_BasicMachine extends GT_MetaTileEntity_B
     @Override
     public String[] getInfoData() {
         return new String[]{
+        		mRecipeStuff.toString(),
                 mNEIName,
                 "Progress:", (mProgresstime / 20) + " secs",
                 (mMaxProgresstime / 20) + " secs",

@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.ShapedRecipes;
+import net.minecraft.item.crafting.ShapelessRecipes;
 
 public class EX_MaterialUtils {
 	
@@ -14,6 +17,7 @@ public class EX_MaterialUtils {
 	public static void checkFreeIDs(){
 		if (freeMaterialDump){
 			checkFreeIDsMethod();
+			createCraftingRegistryMap();
 		}
 	}
 	
@@ -37,7 +41,7 @@ public class EX_MaterialUtils {
 		
 		findFreeIDS(arraySortUp(convert(arr)));
 		
-		Minecraft.getMinecraft().shutdown();
+		//Minecraft.getMinecraft().shutdown();
 	}
 	
 	private static int[ ] arraySortUp( int[ ] intArray )
@@ -509,18 +513,77 @@ public class EX_MaterialUtils {
 
 
 	};
-	private static List craftingRegistry;
+	private static List<IRecipe> craftingRegistry;
 	
+	@SuppressWarnings("unchecked")
 	public static void createCraftingRegistryMap(){
-		CraftingManager.getInstance().getRecipeList();
+		craftingRegistry = CraftingManager.getInstance().getRecipeList();
+		lookupCraftingRegistryMap();
 	}
 	
 	public static void lookupCraftingRegistryMap(){
 		// iterate via "iterator loop"
-		System.out.println("\n==> Iterator Example...");
-		Iterator Iterator1 = craftingRegistry.iterator();
-		while (Iterator1.hasNext()) {
-		System.out.println(Iterator1.next());
-		}
+		System.out.println("\n==> Recipe Iterator...");
+		Iterator<IRecipe> Iterator1 = craftingRegistry.iterator();
+		try{ while (Iterator1.hasNext()) {
+			
+			//System.out.println(Iterator1.next());
+			
+			ItemStack output;
+            IRecipe currentRecipe = Iterator1.next();                  
+            if(currentRecipe instanceof ShapedRecipes)
+            {try{
+                 ShapedRecipes shape = (ShapedRecipes)currentRecipe;
+                 output = shape.getRecipeOutput();
+                 System.out.println(output);
+             	  System.out.println(output.getClass());
+                 System.out.println(output.getUnlocalizedName());
+            } catch(Throwable t){}} else if(currentRecipe instanceof ShapelessRecipes) 
+            {try{
+          	  ShapelessRecipes shapeless = (ShapelessRecipes)currentRecipe;
+            	  output = shapeless.getRecipeOutput();
+            	  System.out.println(output);
+              	  System.out.println(output.getClass());
+                  System.out.println(output.getUnlocalizedName());
+            } catch(Throwable t){}} else 
+            {try{
+          	  output = currentRecipe.getRecipeOutput();
+          	  System.out.println(output); 
+          	  System.out.println(output.getClass());
+          	  //System.out.println(output.getItem());
+              System.out.println(output.getUnlocalizedName());
+            } catch(Throwable t){}}
+			
+            
+		
+		}} catch(Throwable t){}
 	}
+	
+	public static void removeRecipe(ItemStack par1)
+    {        	
+         @SuppressWarnings("unchecked")
+		List<IRecipe> recipeList = CraftingManager.getInstance().getRecipeList();
+         for(int i=0;i<recipeList.size();i++)
+         {     
+            	  ItemStack output;
+                  IRecipe currentRecipe = recipeList.get(i);                  
+                  if(currentRecipe instanceof ShapedRecipes)
+                  {
+                       ShapedRecipes shape = (ShapedRecipes)currentRecipe;
+                       output = shape.getRecipeOutput();
+                  } else if(currentRecipe instanceof ShapelessRecipes) 
+                  {
+                	  ShapelessRecipes shapeless = (ShapelessRecipes)currentRecipe;
+                  	  output = shapeless.getRecipeOutput();
+                  } else 
+                  {
+                	  output = currentRecipe.getRecipeOutput();
+                  }
+                  if (ItemStack.areItemStacksEqual(output, par1))
+                  {
+                	  recipeList.remove(i);
+                  }
+         }
+         
+    }
 }
