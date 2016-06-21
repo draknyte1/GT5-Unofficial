@@ -10,6 +10,21 @@ Fixes a few bugs, Rebalances Materials & adds more useful ones.
 Keeping any new content to my own Mod, [MiscUtils (Click Here to check it out!)](https://github.com/draknyte1/MiscUtilities/wiki) so not as to ruin the integrity of GregTechs core system.
 I plan to work with Bogdan-g to optimise whatever is possible within the core classes, for the benefit of everyone.
 
+# Changes  
+### With the exception of what is listed below, the rest of the repo is basically 1:1 with master. A few things are from Bogdan's repo, which if you just want faster loading times, I advise you check out!  
+Thing I have not added to my fork include:  
+Advanced Miner 2 Multiblock  
+Diesel Generator Multiblock & Multiblock Turbine casing changes  
+Assembly Line Multiblock  
+Oil Cracker Multiblock  
+Pyrolusite Oven Multiblock  
+  
+GT Bees (Use Gendustry || Binnies, save time)  
+GT Crop changes (I was/am tempted to remove crops entirely)  
+GT Titanium Processing chain (The game is grindy enough without the need for extra realism)  
+GT Plastics/Rubber Processing Chain (Default is better for my players, cannot add it anyway without a server reset and the addition of oil cracking)  
+GT Platinum metals group sludge processing chain (I'm still using IHL ihl-tools_n_machines-0.578-1.7.10, soon after it was moved from IHL to GT. I may eventually move it over, but without the changes made)  
+
 ## Downloads
 
 Builds can be found in the build/libs folder.  
