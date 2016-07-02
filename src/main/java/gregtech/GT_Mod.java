@@ -1,5 +1,8 @@
 package gregtech;
 
+import forestry.api.recipes.ICentrifugeRecipe;
+import forestry.api.recipes.ISqueezerRecipe;
+import forestry.api.recipes.RecipeManagers;
 import gregtech.api.GregTech_API;
 import gregtech.api.enchants.Enchantment_EnderDamage;
 import gregtech.api.enchants.Enchantment_Radioactivity;
@@ -32,9 +35,6 @@ import gregtech.common.GT_RecipeAdder;
 import gregtech.common.entities.GT_Entity_Arrow;
 import gregtech.common.entities.GT_Entity_Arrow_Potion;
 import gregtech.common.items.behaviors.Behaviour_DataOrb;
-import gregtech.forestry.api.recipes.ICentrifugeRecipe;
-import gregtech.forestry.api.recipes.ISqueezerRecipe;
-import gregtech.forestry.api.recipes.RecipeManagers;
 import gregtech.loaders.load.GT_CoverBehaviorLoader;
 import gregtech.loaders.load.GT_FuelLoader;
 import gregtech.loaders.load.GT_ItemIterator;
@@ -66,6 +66,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -506,34 +507,36 @@ implements IGT_Mod {
 			}
 		}
 		try {
-			for (ICentrifugeRecipe tRecipe : RecipeManagers.centrifugeManager.recipes()) {
-				Map<ItemStack, Float> outputs = tRecipe.getAllProducts();
-				ItemStack[] tOutputs = new ItemStack[outputs.size()];
-				int[] tChances = new int[outputs.size()];
-				int i = 0;
-				for (Map.Entry<ItemStack, Float> entry : outputs.entrySet()) {
-					tChances[i] = (int) (entry.getValue() * 10000);
-					tOutputs[i] = entry.getKey().copy();
-					i++;
-				}
-				GT_Recipe.GT_Recipe_Map.sCentrifugeRecipes.addRecipe(true, new ItemStack[]{tRecipe.getInput()}, tOutputs, null, tChances, null, null, 128, 5, 0);
+			Collection<ICentrifugeRecipe> iRecipe = RecipeManagers.centrifugeManager.recipes();			
+			for (ICentrifugeRecipe tRecipe : iRecipe) {
+			Map<ItemStack, Float> outputs = tRecipe.getAllProducts();
+			ItemStack[] tOutputs = new ItemStack[outputs.size()];
+			int[] tChances = new int[outputs.size()];
+			int i = 0;
+			for (Map.Entry<ItemStack, Float> entry : outputs.entrySet()) {
+			tChances[i] = (int) (entry.getValue() * 10000);
+			tOutputs[i] = entry.getKey().copy();
+			i++;
 			}
-		} catch (Throwable e) {
+			GT_Recipe.GT_Recipe_Map.sCentrifugeRecipes.addRecipe(true, new ItemStack[]{tRecipe.getInput()}, tOutputs, null, tChances, null, null, 128, 5, 0);
+			}
+			} catch (Throwable e) {
 			if (GT_Values.D1) {
-				e.printStackTrace(GT_Log.err);
+			e.printStackTrace(GT_Log.err);
 			}
-		}
-		try {
-			for (ISqueezerRecipe tRecipe : RecipeManagers.squeezerManager.recipes()) {
-            	if ((tRecipe.getResources().length == 1) && (tRecipe.getFluidOutput() != null)) {
-                   GT_Recipe.GT_Recipe_Map.sFluidExtractionRecipes.addRecipe(true, new ItemStack[]{tRecipe.getResources()[0]}, new ItemStack[]{tRecipe.getRemnants()}, null, new int[]{(int) (tRecipe.getRemnantsChance() * 10000)}, null, new FluidStack[]{tRecipe.getFluidOutput()}, 400, 2, 0);
-            	                 }
-            }
-		} catch (Throwable e) {
+			}
+			try {
+				Collection<ISqueezerRecipe> iRecipe = RecipeManagers.squeezerManager.recipes();			    
+			for (ISqueezerRecipe tRecipe : iRecipe) {
+			if ((tRecipe.getResources().length == 1) && (tRecipe.getFluidOutput() != null)) {
+			GT_Recipe.GT_Recipe_Map.sFluidExtractionRecipes.addRecipe(true, new ItemStack[]{tRecipe.getResources()[0]}, new ItemStack[]{tRecipe.getRemnants()}, null, new int[]{(int) (tRecipe.getRemnantsChance() * 10000)}, null, new FluidStack[]{tRecipe.getFluidOutput()}, 400, 2, 0);
+			}
+			}
+			} catch (Throwable e) {
 			if (GT_Values.D1) {
-				e.printStackTrace(GT_Log.err);
+			e.printStackTrace(GT_Log.err);
 			}
-		}
+			}
 	
 		String tName = "";
 		if (GregTech_API.sRecipeFile.get(ConfigCategories.Recipes.disabledrecipes, "ic2_" + (tName = "blastfurnace"), true)) {
